@@ -1,0 +1,91 @@
+server:
+  tomcat:
+    uri-encoding: UTF-8
+    max-threads: 1000
+    min-spare-threads: 30
+  port: 9632
+  servlet:
+    context-path: /api/v1/connect
+
+spring:
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    username: root
+    password: 123456
+    url: jdbc:mariadb://192.20.4.200:3306/guacamole?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+    druid:
+      #初始化时建立物理连接的个数
+      initial-size: 5
+      #最小连接池数量
+      min-idle: 5
+      #最大连接池数量 maxIdle已经不再使用
+      max-active: 20
+      #获取连接时最大等待时间，单位毫秒
+      max-wait: 60000
+      #申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效。
+      test-while-idle: true
+      #既作为检测的间隔时间又作为testWhileIdel执行的依据
+      time-between-eviction-runs-millis: 60000
+      #销毁线程时检测当前连接的最后活动时间和当前时间差大于该值时，关闭当前连接
+      min-evictable-idle-time-millis: 30000
+      validation-query: SELECT 1 FROM DUAL
+      #申请连接时会执行validationQuery检测连接是否有效,开启会降低性能,默认为true
+      test-on-borrow: false
+      #归还连接时会执行validationQuery检测连接是否有效,开启会降低性能,默认为true
+      test-on-return: false
+      #是否缓存preparedStatement,mysql5.5+建议开启
+      pool-prepared-statements: true
+      #当值大于0时poolPreparedStatements会自动修改为true
+      max-pool-prepared-statement-per-connection-size: 20
+
+  resources:
+    static-locations: classpath:/resources/,classpath:/static/
+
+  servlet:
+    multipart:
+      max-file-size: 3000MB #单文件上传最大大小，默认1Mb
+      max-request-size: 30000MB #多文件上传时最大大小,默认10Mb
+
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+
+
+#mybatis
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/*.xml
+  #实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: com.ict.db.entity
+  global-config:
+    #数据库相关配置
+    db-config:
+      #主键类型  AUTO:"数据库ID自增", INPUT:"用户输入ID", ID_WORKER:"全局唯一ID (数字类型唯一ID)", UUID:"全局唯一ID UUID";
+      id-type: AUTO
+      #字段策略 IGNORED:"忽略判断",NOT_NULL:"非 NULL 判断"),NOT_EMPTY:"非空判断"
+      field-strategy: IGNORED
+      #驼峰下划线转换
+      column-underline: true
+      logic-delete-value: -1
+      logic-not-delete-value: 0
+    banner: false
+  #原生配置
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+    call-setters-on-nulls: true
+    jdbc-type-for-null: 'null'
+    default-enum-type-handler: org.apache.ibatis.type.EnumOrdinalTypeHandler
+  type-enums-package: com.ict.constants
+
+logging:
+  level:
+    com.ict.cloudic.*: debug
+
+guacd:
+  ip: 10.10.1.136
+  port: 4822
+
+
+
+

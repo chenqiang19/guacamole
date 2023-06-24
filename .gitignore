@@ -1,0 +1,67 @@
+# Project
+./*.jar
+./target
+
+# Maven
+target/
+
+# Log file
+*.log
+log/
+
+# out
+**/out/
+
+# Mac
+.DS_Store
+
+# others
+*.jar
+*.war
+*.zip
+*.tar
+*.tar.gz
+*.pid
+*.orig
+temp/
+
+*.frm.
+*.opt
+*.log.*
+!.mvn/wrapper/maven-wrapper.jar
+
+
+mvnw*
+
+derby.log
+.mvn
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+.idea/*
+
+### NetBeans ###
+nbproject/private/
+#build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+### LOG ###
+#log
+logs/
+
+
+log-sys-start.log
