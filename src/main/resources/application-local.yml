@@ -13,7 +13,7 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     username: root
     password: 123456
-    url: jdbc:mariadb://192.20.4.200:3306/guacamole?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+    url: jdbc:mariadb://localhost:3306/guacamole?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
     druid:
       #初始化时建立物理连接的个数
       initial-size: 5
@@ -83,7 +83,7 @@ logging:
     com.ict.cloudic.*: debug
 
 guacd:
-  ip: 10.10.1.136
+  ip: localhost
   port: 4822
 
 
